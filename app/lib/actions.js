@@ -117,15 +117,18 @@ export const updateProduct = async (formData) => {
 
 
 export async function authenticate(prevState, formData) {
+    const { username, password } = Object.fromEntries(formData);
     try {
         // console.log("signing in");
-        await signIn('credentials', formData);
+        await signIn('credentials', { username, password, redirect: false });
+        return "Logged in";
     } catch (error) {
-        if (error instanceof AuthError) {
-            // console.log("returning error");
-            return "Wrong username or password";
-        }
-        // console.log("throwing error");
-        throw error; // rethrow the error to trigger higher-level error handling (authorized callback).
+        // if (error instanceof AuthError) {
+        //     // console.log("returning error");
+        //     return "Wrong username or password";
+        // }
+        // // console.log("throwing error");
+        // throw error; // rethrow the error to trigger higher-level error handling (authorized callback).
+        return "Wrong username or password";
     }
   }

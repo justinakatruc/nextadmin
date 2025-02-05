@@ -29,3 +29,7 @@
     color: var(--text);
     cursor: pointer;
 }
+
+.form button:disabled {
+    background-color: #ccc;
+}
