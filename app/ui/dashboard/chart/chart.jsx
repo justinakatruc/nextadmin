@@ -1,6 +1,6 @@
 "use client";
 import styles from './chart.module.css';
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
