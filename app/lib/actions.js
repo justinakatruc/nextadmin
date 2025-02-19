@@ -5,8 +5,6 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import bcrypt from 'bcrypt';
 import { signIn } from '@/app/auth';
-import { AuthError } from 'next-auth';
-
 
 /* User Actions */
 export const addUser = async (formData) => {
@@ -119,16 +117,9 @@ export const updateProduct = async (formData) => {
 export async function authenticate(prevState, formData) {
     const { username, password } = Object.fromEntries(formData);
     try {
-        // console.log("signing in");
         await signIn('credentials', { username, password, redirect: false });
         return "Logged in";
     } catch (error) {
-        // if (error instanceof AuthError) {
-        //     // console.log("returning error");
-        //     return "Wrong username or password";
-        // }
-        // // console.log("throwing error");
-        // throw error; // rethrow the error to trigger higher-level error handling (authorized callback).
         return "Wrong username or password";
     }
   }
