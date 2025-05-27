@@ -23,12 +23,10 @@ export const { signIn, signOut, auth } = NextAuth({
         Credentials({
         async authorize(credentials) {
             try {
-                // console.log("login");
                 const user = await login(credentials);
                 return user;
             }
             catch(error) {
-                // console.log("catching error");
                 return null;
             }
         },
@@ -36,7 +34,6 @@ export const { signIn, signOut, auth } = NextAuth({
     ],
     callbacks: {
         async jwt({token, user}) {
-            // console.log("jwt");
             if (user) {
                 token.username = user.username;
                 token.img = user.img;
@@ -44,7 +41,6 @@ export const { signIn, signOut, auth } = NextAuth({
             return token;
         },
         async session({session, token}) {
-            // console.log("session");
             if (token) {
                 session.user.username = token.username;
                 session.user.img = token.img;
